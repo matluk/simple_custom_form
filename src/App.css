@@ -1,0 +1,75 @@
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.p_kontakt, .p_adresa{
+  color:purple
+}
+
+body{
+  margin:0;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 270px;
+}
+.kontakt {
+  margin-top: -15px;
+  margin-bottom: 30px;
+  border: 2px solid #00ccff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.adresa {
+  margin-top:-15px;
+  border: 2px solid #00ccff;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+.nacin_placanja {
+  border: 2px solid #00ccff;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.p_u_n {
+  margin-bottom: 20px;
+}
+
+input {
+  padding: 5px;
+  margin: 10px 0px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.form-select {
+  padding: 5px;
+  margin: 10px 0px;
+  border-radius: 5px;
+  border: 1px solid gray;
+}
+
+.l_nacinplacanja{
+  color:purple;
+}
+
+.non_valid {
+  color: red;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.sazetak_podataka {
+  line-height: 3px;
+}
