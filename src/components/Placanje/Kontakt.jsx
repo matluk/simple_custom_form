@@ -1,24 +1,26 @@
-import {useState} from 'react';
-
-export default function Kontakt({ onChangeHandler, formData, formError }) {
-  const [didUserTypeOnce, setDidUserTypeOnce] = useState(false);
-
+export default function Kontakt({ register, errors }) {
   return (
     <div>
       <p className="p_kontakt">Kontakt</p>
       <div className="kontakt">
         <div className="form-group">
+          <label htmlFor="kontaktMail">Email adresa:</label>
           <input
+            id="kontaktMail"
             className="form-control"
             name="E mail"
             placeholder="Email adresa..."
-            onChange={event => {
-              setDidUserTypeOnce(true);
-              onChangeHandler(event)
-            }}
-            value={formData["E mail"]}
+            {...register("E mail", {
+              required: "Unesite ispravan e-mail!",
+              pattern: {
+                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                message: "Email nije valjan!",
+              },
+            })}
           />
-          {didUserTypeOnce && <span className="non_valid">{formError.email}</span>}
+          {errors["E mail"] && (
+            <span className="non_valid">{errors["E mail"].message}</span>
+          )}
         </div>
       </div>
     </div>

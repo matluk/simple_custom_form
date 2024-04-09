@@ -1,26 +1,22 @@
-import { useState } from "react";
-
-export default function PrihvacamUvjeteNarudzbe({
-  onChangeHandler,
-  formError,
-}) {
-  const [didUserTypeOnce, setDidUserTypeOnce] = useState(false);
+export default function PrihvacamUvjeteNarudzbe({ register, errors }) {
   return (
     <div className="p_u_n">
       <div className="form-group">
         <div>
-          <input
-            type="checkbox"
-            name="Uvjeti narudžbe"
-            value="Prihvaćam uvjete narudžbe"
-            onChange={(event) => {
-              setDidUserTypeOnce(true);
-              onChangeHandler(event);
-            }}
-          />
-          <label htmlFor="html">Prihvaćam uvjete narudžbe</label>
+            <input
+              id="uvjeti"
+              type="checkbox"
+              name="Uvjeti narudžbe"
+              value="Prihvaćam uvjete narudžbe"
+              {...register("Uvjeti narudžbe", {
+                required: "Morate prihvatiti uvjete narudžbe!",
+              })}
+            />
+          <label htmlFor="uvjeti">Prihvaćam uvjete narudžbe</label>
         </div>
-        {didUserTypeOnce && <span className="non_valid">{formError.uvjetinarudzbe}</span>}
+        {errors["Uvjeti narudžbe"] && (
+          <span className="non_valid">{errors["Uvjeti narudžbe"].message}</span>
+        )}
       </div>
     </div>
   );

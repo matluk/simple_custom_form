@@ -1,0 +1,31 @@
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: gainsboro;
+  background-size: cover;
+  background-position: center;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  padding: 20px;
+  border: none;
+  background-color: #32de84;
+  color: black;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+
+.btn_div {
+  display: flex;
+  justify-content: center;
+}

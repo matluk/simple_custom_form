@@ -1,48 +1,38 @@
-import { useState } from "react";
-
-export default function Adresa({ onChangeHandler, formData, formError }) {
-  const [didUserTypeOnce, setDidUserTypeOnce] = useState([false, false, false]);
-
+export default function Adresa({ register, errors }) {
   return (
     <>
       <p className="p_adresa">Adresa</p>
       <div className="adresa">
         <div className="form-group">
-          <label htmlFor="imeiprezime" className="form-label">
+          <label htmlFor="imeprezime" className="form-label">
             Ime i prezime:
           </label>
           <input
+            id="imeprezime"
             className="form-control"
             name="Ime i prezime"
-            onChange={(event) => {
-              setDidUserTypeOnce((prev) => {
-                const copy = [...prev];
-                copy[0] = true;
-                return copy;
-              });
-              onChangeHandler(event);
-            }}
-            value={formData["Ime i prezime"]}
+            {...register("Ime i prezime", {
+              required: "Obavezno unesite Vaše ime i prezime!",
+              pattern: {
+                value: /([a-zA-Z]+\s)+[a-zA-Z]+/,
+                message: "Ime i prezime nije valjano!",
+              },
+            })}
           />
-          {didUserTypeOnce[0] && (
-            <span className="non_valid">{formError.imeiprezime}</span>
+          {errors["Ime i prezime"] && (
+            <span className="non_valid">{errors["Ime i prezime"].message}</span>
           )}
         </div>
 
         <div className="form-group">
           <label htmlFor="drzava"> Država:</label>
           <select
+            id="drzava"
             className="form-select"
             name="Država"
-            onChange={(event) => {
-              setDidUserTypeOnce((prev) => {
-                const copy = [...prev];
-                copy[1] = true;
-                return copy;
-              });
-              onChangeHandler(event);
-            }}
-            value={formData["Država"]}
+            {...register("Država", {
+              required: "Odaberite odgovarajuću državu!",
+            })}
           >
             <option value="">- Odaberi -</option>
             <option value="Hrvatska">Hrvatska</option>
@@ -51,8 +41,8 @@ export default function Adresa({ onChangeHandler, formData, formError }) {
             <option value="Crna Gora">Crna Gora</option>
             <option value="Srbija">Srbija</option>
           </select>
-          {didUserTypeOnce[1] && (
-            <span className="non_valid">{formError.drzava}</span>
+          {errors["Država"] && (
+            <span className="non_valid">{errors["Država"].message}</span>
           )}
         </div>
 
@@ -61,20 +51,19 @@ export default function Adresa({ onChangeHandler, formData, formError }) {
             Adresa:
           </label>
           <input
+            id="adresa"
             className="form-control"
             name="Adresa"
-            onChange={(event) => {
-              setDidUserTypeOnce((prev) => {
-                const copy = [...prev];
-                copy[2] = true;
-                return copy;
-              });
-              onChangeHandler(event);
-            }}
-            value={formData["Adresa"]}
+            {...register("Adresa", {
+              required: "Obavezno unesite adresu!",
+              minLength: {
+                value: 6,
+                message: "Adresa mora biti dulja od 6 karaktera!",
+              },
+            })}
           />
-          {didUserTypeOnce[2] && (
-            <span className="non_valid">{formError.adresa}</span>
+          {errors["Adresa"] && (
+            <span className="non_valid">{errors["Adresa"].message}</span>
           )}
         </div>
       </div>

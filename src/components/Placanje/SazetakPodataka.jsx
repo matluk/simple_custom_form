@@ -1,7 +1,7 @@
-export default function SazetakPodataka({formError, isSubmit, formData}) {
+export default function SazetakPodataka({ isValid, errors, formData }) {
   return (
     <div className="sazetak_podataka">
-      {Object.keys(formError).length === 0 && isSubmit && (
+      {Object.keys(errors).length === 0 && isValid && (
         <div className="msg">
           {Object.entries(formData).map(([key, value]) => (
             <p key={key}>

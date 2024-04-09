@@ -1,38 +1,37 @@
-import { useState } from "react";
-
-export default function NacinPlacanja({ onChangeHandler, formError }) {
-  const [didUserTypeOnce, setDidUserTypeOnce] = useState(false);
-
+export default function NacinPlacanja({ register, errors }) {
   return (
     <fieldset className="nacin_placanja">
-      <legend htmlFor="nacin_placanja" className="l_nacinplacanja">
-        Način plaćanja:
-      </legend>
+      <legend className="l_nacinplacanja">Način plaćanja:</legend>
       <div className="form-group">
         <div>
           <div>
             <input
+              id="kartica"
               type="radio"
               name="Način plaćanja"
-              onChange={(event) => {
-                setDidUserTypeOnce(true);
-                onChangeHandler(event);
-              }}
               value="Kartica"
+              {...register("Način plaćanja", {
+                required: "Odaberite način plaćanja",
+              })}
             />
             <label htmlFor="kartica">Kartica</label>
           </div>
           <div>
             <input
+              id="pouzece"
               type="radio"
               name="Način plaćanja"
-              onChange={onChangeHandler}
               value="Pouzeće"
+              {...register("Način plaćanja", {
+                required: "Odaberite način plaćanja",
+              })}
             />
             <label htmlFor="pouzece">Pouzeće</label>
           </div>
-          {didUserTypeOnce && (
-            <span className="non_valid">{formError.nacinplacanja}</span>
+          {errors["Način plaćanja"] && (
+            <span className="non_valid">
+              {errors["Način plaćanja"].message}
+            </span>
           )}
         </div>
       </div>
